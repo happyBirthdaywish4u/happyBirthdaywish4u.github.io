@@ -5,12 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Birthday Misba ! 🌸🩵</title>
   
-  <!-- Tailwind CSS, Canvas-Confetti & FontAwesome -->
+  <!-- ========================================================= -->
+  <!-- EXTERNAL LIBRARIES (Tailwind CSS, Canvas Confetti, Fonts)  -->
+  <!-- ========================================================= -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Dancing+Script:wght@700&family=Caveat:wght@600&display=swap" rel="stylesheet">
 
+  <!-- ========================================================= -->
+  <!-- CUSTOM STYLES (Pink & Sky Blue Glassmorphism Theme)       -->
+  <!-- ========================================================= -->
   <style>
     body {
       font-family: 'Outfit', sans-serif;
@@ -23,7 +28,7 @@
     .font-handwriting { font-family: 'Dancing Script', cursive; }
     .font-note { font-family: 'Caveat', cursive; }
 
-    /* 3D Canvas Background */
+    /* 3D Falling Petals Canvas Background */
     #petalCanvas {
       position: fixed;
       top: 0;
@@ -183,7 +188,6 @@
       border-bottom: 6px solid #ffffff;
     }
 
-    /* Frosting Rose Dots */
     .frosting-dot {
       position: absolute;
       width: 12px;
@@ -262,7 +266,6 @@
       z-index: 20;
     }
 
-    /* Glow Animations */
     .pink-glow-text {
       text-shadow: 0 0 15px rgba(236, 72, 153, 0.6), 0 0 30px rgba(56, 189, 248, 0.4);
     }
@@ -270,7 +273,7 @@
 </head>
 <body class="relative min-h-screen text-slate-100 flex flex-col justify-between items-center px-4 py-8">
 
-  <!-- Ambient Glows -->
+  <!-- Ambient Glow Backgrounds -->
   <div class="glow-bg-pink"></div>
   <div class="glow-bg-blue"></div>
 
@@ -323,7 +326,7 @@
     </button>
   </div>
 
-  <!-- Main Container -->
+  <!-- Main Content Wrapper -->
   <main class="w-full max-w-4xl z-10 space-y-16 mt-16 mb-12">
 
     <!-- HERO CELEBRATION SECTION -->
@@ -340,10 +343,9 @@
         Pop the balloons! Blow out the candles, and let's cut the cake together 🎂
       </p>
 
-      <!-- 3D Interactive Cake with "Happy Birthday Misba" Topper Header -->
+      <!-- 3D Interactive Cake with Topper Header -->
       <div class="py-8">
         <div class="cake-container" id="cakeContainer" onclick="handleCakeInteraction()">
-          <!-- Cake Topper Header -->
           <div class="cake-topper">✨ Happy Birthday Misba! ✨</div>
 
           <!-- Candles -->
@@ -368,7 +370,6 @@
             <div class="frosting-dot" style="right: 20px; top: -6px;"></div>
           </div>
 
-          <!-- Knife Guide -->
           <div class="knife" id="knife">🔪</div>
         </div>
       </div>
@@ -380,7 +381,10 @@
       </div>
     </section>
 
-    <!-- SNAPSHOTS GALLERY SECTION -->
+    <!-- ========================================================= -->
+    <!-- 📸 [ADD PICTURE SOURCES HERE]                            -->
+    <!-- Change 'image.png', 'image_2.png', etc. to your photo files -->
+    <!-- ========================================================= -->
     <section class="space-y-6">
       <div class="text-center">
         <span class="text-xs font-bold uppercase tracking-widest text-sky-400">Polaroid Snapshots</span>
@@ -388,22 +392,31 @@
       </div>
 
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 pt-2">
+        
+        <!-- 📸 PICTURE 1 SOURCE -->
         <div class="polaroid-card -rotate-3" onclick="openLightbox('image.png')">
           <img src="image.png" alt="Snapshot 1" class="w-full h-48 object-cover rounded">
           <p class="font-note text-center text-slate-800 text-xl mt-3 font-semibold">Good Vibes ✨</p>
         </div>
+
+        <!-- 📸 PICTURE 2 SOURCE -->
         <div class="polaroid-card rotate-2" onclick="openLightbox('image_2.png')">
           <img src="image_2.png" alt="Snapshot 2" class="w-full h-48 object-cover rounded">
           <p class="font-note text-center text-slate-800 text-xl mt-3 font-semibold">Fun Moments 🌟</p>
         </div>
+
+        <!-- 📸 PICTURE 3 SOURCE -->
         <div class="polaroid-card -rotate-2" onclick="openLightbox('image_3.png')">
           <img src="image_3.png" alt="Snapshot 3" class="w-full h-48 object-cover rounded">
           <p class="font-note text-center text-slate-800 text-xl mt-3 font-semibold">Celebrations 🎉</p>
         </div>
+
+        <!-- 📸 PICTURE 4 SOURCE -->
         <div class="polaroid-card rotate-3" onclick="openLightbox('image_4.png')">
           <img src="image_4.png" alt="Snapshot 4" class="w-full h-48 object-cover rounded">
           <p class="font-note text-center text-slate-800 text-xl mt-3 font-semibold">Memories 💫</p>
         </div>
+
       </div>
     </section>
 
@@ -461,7 +474,7 @@
 
   </main>
 
-  <!-- CUSTOM SONG MODAL -->
+  <!-- CUSTOM SONG PICKER MODAL -->
   <div id="songModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
     <div class="glass-card rounded-2xl p-6 max-w-md w-full space-y-4 relative">
       <button onclick="closeSongModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white">
@@ -495,20 +508,24 @@
     <img id="lightboxImg" src="" alt="Full view" class="max-w-full max-vh-80 rounded-lg shadow-2xl border-2 border-pink-500/50">
   </div>
 
-  <!-- HTML5 Audio Element for Custom Songs -->
-  <audio id="customAudioPlayer"></audio>
+  <!-- ========================================================= -->
+  <!-- 🎵 [ADD DEFAULT MUSIC SOURCE HERE]                        -->
+  <!-- Paste direct song link inside src="..." below (e.g., mp3) -->
+  <!-- ========================================================= -->
+  <audio id="customAudioPlayer" src="YOUR_SONG_URL_HERE.mp3"></audio>
 
   <footer class="text-center text-xs text-slate-500 py-4 z-10">
     Crafted with 🎉 for Misba | Wishes from Ankit Yadav
   </footer>
 
-  <!-- Audio & Interactive Engine Script -->
+  <!-- ========================================================= -->
+  <!-- JAVASCRIPT ENGINE (Audio, Cake, Typewriter & 3D Petals)   -->
+  <!-- ========================================================= -->
   <script>
-    /* Audio System & Custom Song State */
+    /* Web Audio Synthesizer State */
     let audioContext = null;
     let isPlayingAudio = false;
     let audioTimer = null;
-    let customAudioSource = null;
 
     function initAudio() {
       if (!audioContext) {
@@ -540,7 +557,7 @@
       if (isPlayingAudio) {
         isPlayingAudio = false;
         clearInterval(audioTimer);
-        if (customPlayer.src) {
+        if (customPlayer.src && customPlayer.src !== window.location.href) {
           customPlayer.pause();
         }
         btnText.innerText = "PLAY SONG";
@@ -550,7 +567,7 @@
         btnText.innerText = "PLAYING...";
         btnIcon.className = "fas fa-volume-up text-sky-400 animate-pulse";
         
-        if (customPlayer.src) {
+        if (customPlayer.src && customPlayer.src !== window.location.href && customPlayer.src !== "YOUR_SONG_URL_HERE.mp3") {
           customPlayer.play().catch(() => playBirthdayMelody());
         } else {
           playBirthdayMelody();
@@ -576,13 +593,9 @@
       }, 400);
     }
 
-    /* Modal Song Picker Controls */
-    function openSongModal() {
-      document.getElementById('songModal').classList.remove('hidden');
-    }
-    function closeSongModal() {
-      document.getElementById('songModal').classList.add('hidden');
-    }
+    /* Modal Custom Song Picker */
+    function openSongModal() { document.getElementById('songModal').classList.remove('hidden'); }
+    function closeSongModal() { document.getElementById('songModal').classList.add('hidden'); }
 
     function handleAudioUpload(e) {
       const file = e.target.files[0];
@@ -603,7 +616,7 @@
       }
     }
 
-    /* Interactive Cake State */
+    /* Interactive Candle Blowing & Cake Cutting Logic */
     let candlesLit = true;
     let cakeCut = false;
 
@@ -650,7 +663,7 @@
         colors: ['#ec4899', '#38bdf8', '#f472b6', '#60a5fa', '#ffffff']
       });
 
-      // Automatic Song Playback upon Slicing
+      // Automatically play music when cake is sliced
       if (!isPlayingAudio) {
         toggleAudio();
       }
@@ -713,7 +726,7 @@
       document.getElementById('replyText').value = '';
     }
 
-    /* 3D Falling Petals Canvas Engine */
+    /* 3D Falling Rose Petals Engine */
     const canvas = document.getElementById('petalCanvas');
     const ctx = canvas.getContext('2d');
 
