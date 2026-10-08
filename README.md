@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Birthday Misba ! 🌸🩵</title>
   
-  <!-- Tailwind CSS & Google Fonts -->
+  <!-- Tailwind CSS, Canvas-Confetti & FontAwesome -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -32,6 +32,32 @@
       height: 100vh;
       pointer-events: none;
       z-index: 1;
+    }
+
+    /* Ambient Background Glows */
+    .glow-bg-pink {
+      position: fixed;
+      top: 10%;
+      left: 15%;
+      width: 350px;
+      height: 350px;
+      background: rgba(236, 72, 153, 0.15);
+      filter: blur(120px);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .glow-bg-blue {
+      position: fixed;
+      bottom: 20%;
+      right: 15%;
+      width: 400px;
+      height: 400px;
+      background: rgba(56, 189, 248, 0.15);
+      filter: blur(140px);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
     }
 
     /* Corner Floral Line-Art Ornaments */
@@ -96,55 +122,91 @@
       100% { transform: rotate(5deg) translateY(8px); }
     }
 
-    /* 3D Cake Visuals */
+    /* 3D Cake Visuals with Topper Header */
     .cake-container {
       position: relative;
-      width: 240px;
-      height: 220px;
+      width: 280px;
+      height: 250px;
       margin: 0 auto;
+      cursor: pointer;
     }
+    .cake-topper {
+      position: absolute;
+      top: -35px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #f472b6, #ec4899);
+      color: #ffffff;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+      box-shadow: 0 0 20px rgba(236, 72, 153, 0.8), 0 4px 10px rgba(0,0,0,0.5);
+      border: 2px solid #ffffff;
+      z-index: 25;
+      animation: topperGlow 2s infinite alternate;
+    }
+    @keyframes topperGlow {
+      0% { transform: translateX(-50%) scale(1); box-shadow: 0 0 15px rgba(236, 72, 153, 0.6); }
+      100% { transform: translateX(-50%) scale(1.05); box-shadow: 0 0 25px rgba(56, 189, 248, 0.9); }
+    }
+
     .cake-layer {
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
       border-radius: 16px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      transition: all 0.5s ease;
     }
     .layer-bottom {
-      width: 200px;
-      height: 70px;
+      width: 220px;
+      height: 75px;
       bottom: 10px;
       background: linear-gradient(135deg, #ec4899, #be185d);
       border-bottom: 8px solid #f472b6;
     }
     .layer-middle {
-      width: 150px;
-      height: 60px;
-      bottom: 75px;
+      width: 165px;
+      height: 65px;
+      bottom: 80px;
       background: linear-gradient(135deg, #38bdf8, #0284c7);
       border-bottom: 8px solid #7dd3fc;
     }
     .layer-top {
-      width: 100px;
-      height: 50px;
-      bottom: 130px;
+      width: 115px;
+      height: 55px;
+      bottom: 140px;
       background: linear-gradient(135deg, #f472b6, #38bdf8);
       border-bottom: 6px solid #ffffff;
+    }
+
+    /* Frosting Rose Dots */
+    .frosting-dot {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background: #ffffff;
+      border-radius: 50%;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     }
 
     /* Candle & Flame */
     .candle {
       position: absolute;
       width: 10px;
-      height: 35px;
+      height: 38px;
       background: repeating-linear-gradient(45deg, #f43f5e, #f43f5e 5px, #ffffff 5px, #ffffff 10px);
-      bottom: 180px;
+      bottom: 195px;
       border-radius: 4px;
       cursor: pointer;
+      z-index: 20;
     }
-    .candle-1 { left: 85px; }
-    .candle-2 { left: 115px; }
-    .candle-3 { left: 145px; }
+    .candle-1 { left: 105px; }
+    .candle-2 { left: 135px; }
+    .candle-3 { left: 165px; }
 
     .flame {
       position: absolute;
@@ -166,13 +228,14 @@
     /* Knife Slice Animation */
     .knife {
       position: absolute;
-      right: -40px;
-      top: 20px;
-      font-size: 3rem;
+      right: -30px;
+      top: 30px;
+      font-size: 3.2rem;
       transform: rotate(-45deg);
       transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
       opacity: 0;
       pointer-events: none;
+      z-index: 30;
     }
     .knife.active {
       opacity: 1;
@@ -181,7 +244,7 @@
     }
     @keyframes guideCut {
       0% { transform: translate(0, 0) rotate(-45deg); }
-      100% { transform: translate(-30px, 30px) rotate(-15deg); }
+      100% { transform: translate(-35px, 35px) rotate(-15deg); }
     }
 
     /* Polaroid Image Cards */
@@ -206,6 +269,10 @@
   </style>
 </head>
 <body class="relative min-h-screen text-slate-100 flex flex-col justify-between items-center px-4 py-8">
+
+  <!-- Ambient Glows -->
+  <div class="glow-bg-pink"></div>
+  <div class="glow-bg-blue"></div>
 
   <!-- 3D Floating Rose Petals Canvas -->
   <canvas id="petalCanvas"></canvas>
@@ -244,8 +311,12 @@
     <div class="balloon" style="background: #ec4899; animation-delay: -3s;" onclick="popBalloon(this)"></div>
   </div>
 
-  <!-- Header Audio Toggle Controls -->
+  <!-- Header Audio Controls -->
   <div class="fixed top-4 right-4 z-50 flex items-center space-x-2">
+    <button onclick="openSongModal()" class="px-3.5 py-2 rounded-full glass-card border border-pink-400/40 text-xs font-semibold tracking-wider hover:bg-pink-500/20 transition flex items-center space-x-2">
+      <i class="fas fa-plus text-pink-400"></i>
+      <span>CUSTOM SONG</span>
+    </button>
     <button id="musicBtn" onclick="toggleAudio()" class="px-4 py-2 rounded-full glass-card border border-sky-400/40 text-xs font-semibold tracking-wider hover:bg-sky-500/20 transition flex items-center space-x-2">
       <i id="musicIcon" class="fas fa-music text-pink-400"></i>
       <span id="musicText">PLAY SONG</span>
@@ -269,15 +340,35 @@
         Pop the balloons! Blow out the candles, and let's cut the cake together 🎂
       </p>
 
-      <!-- 3D Interactive Cake -->
-      <div class="py-6">
+      <!-- 3D Interactive Cake with "Happy Birthday Misba" Topper Header -->
+      <div class="py-8">
         <div class="cake-container" id="cakeContainer" onclick="handleCakeInteraction()">
+          <!-- Cake Topper Header -->
+          <div class="cake-topper">✨ Happy Birthday Misba! ✨</div>
+
+          <!-- Candles -->
           <div class="candle candle-1"><div class="flame" id="flame1"></div></div>
           <div class="candle candle-2"><div class="flame" id="flame2"></div></div>
           <div class="candle candle-3"><div class="flame" id="flame3"></div></div>
-          <div class="cake-layer layer-top"></div>
-          <div class="cake-layer layer-middle"></div>
-          <div class="cake-layer layer-bottom"></div>
+
+          <!-- Cake Tiers -->
+          <div class="cake-layer layer-top">
+            <div class="frosting-dot" style="left: 10px; top: -6px;"></div>
+            <div class="frosting-dot" style="left: 50px; top: -6px;"></div>
+            <div class="frosting-dot" style="right: 10px; top: -6px;"></div>
+          </div>
+          <div class="cake-layer layer-middle">
+            <div class="frosting-dot" style="left: 15px; top: -6px;"></div>
+            <div class="frosting-dot" style="left: 75px; top: -6px;"></div>
+            <div class="frosting-dot" style="right: 15px; top: -6px;"></div>
+          </div>
+          <div class="cake-layer layer-bottom">
+            <div class="frosting-dot" style="left: 20px; top: -6px;"></div>
+            <div class="frosting-dot" style="left: 105px; top: -6px;"></div>
+            <div class="frosting-dot" style="right: 20px; top: -6px;"></div>
+          </div>
+
+          <!-- Knife Guide -->
           <div class="knife" id="knife">🔪</div>
         </div>
       </div>
@@ -370,21 +461,54 @@
 
   </main>
 
+  <!-- CUSTOM SONG MODAL -->
+  <div id="songModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="glass-card rounded-2xl p-6 max-w-md w-full space-y-4 relative">
+      <button onclick="closeSongModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white">
+        <i class="fas fa-times"></i>
+      </button>
+      <h3 class="text-xl font-bold text-pink-300"><i class="fas fa-music mr-2"></i>Add Your Custom Song</h3>
+      <p class="text-xs text-slate-300">Upload an MP3 audio file or paste a direct audio link below:</p>
+
+      <div class="space-y-3">
+        <div>
+          <label class="block text-xs text-slate-400 mb-1">Option 1: Upload File from Device</label>
+          <input type="file" id="audioFileInput" accept="audio/*" onchange="handleAudioUpload(event)" class="w-full text-xs text-slate-300 file:mr-3 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-pink-500 file:text-white hover:file:bg-pink-600 cursor-pointer">
+        </div>
+
+        <div class="text-center text-xs text-slate-500 uppercase tracking-widest">— OR —</div>
+
+        <div>
+          <label class="block text-xs text-slate-400 mb-1">Option 2: Paste Direct Audio URL (.mp3)</label>
+          <input type="url" id="audioUrlInput" placeholder="https://example.com/song.mp3" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-xs text-slate-100 focus:outline-none focus:border-sky-400">
+        </div>
+
+        <button onclick="saveAudioUrl()" class="w-full py-2.5 rounded-xl bg-pink-500 hover:bg-pink-600 text-white font-bold text-xs uppercase tracking-wider transition">
+          Set Custom Song
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- LIGHTBOX MODAL -->
   <div id="lightbox" class="fixed inset-0 bg-black/90 z-50 hidden flex items-center justify-center p-4" onclick="closeLightbox()">
     <img id="lightboxImg" src="" alt="Full view" class="max-w-full max-vh-80 rounded-lg shadow-2xl border-2 border-pink-500/50">
   </div>
 
+  <!-- HTML5 Audio Element for Custom Songs -->
+  <audio id="customAudioPlayer"></audio>
+
   <footer class="text-center text-xs text-slate-500 py-4 z-10">
     Crafted with 🎉 for Misba | Wishes from Ankit Yadav
   </footer>
 
-  <!-- Audio Synthesizer / Player Engine -->
+  <!-- Audio & Interactive Engine Script -->
   <script>
-    /* Audio System */
+    /* Audio System & Custom Song State */
     let audioContext = null;
     let isPlayingAudio = false;
     let audioTimer = null;
+    let customAudioSource = null;
 
     function initAudio() {
       if (!audioContext) {
@@ -411,17 +535,26 @@
       initAudio();
       const btnText = document.getElementById('musicText');
       const btnIcon = document.getElementById('musicIcon');
+      const customPlayer = document.getElementById('customAudioPlayer');
       
       if (isPlayingAudio) {
         isPlayingAudio = false;
         clearInterval(audioTimer);
+        if (customPlayer.src) {
+          customPlayer.pause();
+        }
         btnText.innerText = "PLAY SONG";
         btnIcon.className = "fas fa-music text-pink-400";
       } else {
         isPlayingAudio = true;
         btnText.innerText = "PLAYING...";
         btnIcon.className = "fas fa-volume-up text-sky-400 animate-pulse";
-        playBirthdayMelody();
+        
+        if (customPlayer.src) {
+          customPlayer.play().catch(() => playBirthdayMelody());
+        } else {
+          playBirthdayMelody();
+        }
       }
     }
 
@@ -441,6 +574,33 @@
         osc.stop(audioContext.currentTime + 0.35);
         idx = (idx + 1) % notes.length;
       }, 400);
+    }
+
+    /* Modal Song Picker Controls */
+    function openSongModal() {
+      document.getElementById('songModal').classList.remove('hidden');
+    }
+    function closeSongModal() {
+      document.getElementById('songModal').classList.add('hidden');
+    }
+
+    function handleAudioUpload(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const url = URL.createObjectURL(file);
+        document.getElementById('customAudioPlayer').src = url;
+        alert("Custom song loaded successfully! It will play automatically when the cake is cut.");
+        closeSongModal();
+      }
+    }
+
+    function saveAudioUrl() {
+      const url = document.getElementById('audioUrlInput').value.trim();
+      if (url) {
+        document.getElementById('customAudioPlayer').src = url;
+        alert("Custom song URL set successfully!");
+        closeSongModal();
+      }
     }
 
     /* Interactive Cake State */
@@ -469,7 +629,7 @@
       document.getElementById('flame2').style.display = 'none';
       document.getElementById('flame3').style.display = 'none';
       
-      confetti({ particleCount: 50, spread: 60, origin: { y: 0.6 } });
+      confetti({ particleCount: 60, spread: 70, origin: { y: 0.6 } });
       
       const btn = document.getElementById('actionBtn');
       btn.innerHTML = '🔪 Cut The Cake';
@@ -484,12 +644,13 @@
       document.getElementById('knife').classList.remove('active');
       
       confetti({
-        particleCount: 150,
-        spread: 100,
+        particleCount: 180,
+        spread: 120,
         origin: { y: 0.5 },
         colors: ['#ec4899', '#38bdf8', '#f472b6', '#60a5fa', '#ffffff']
       });
 
+      // Automatic Song Playback upon Slicing
       if (!isPlayingAudio) {
         toggleAudio();
       }
@@ -576,7 +737,6 @@
         this.speedX = Math.random() * 1 - 0.5;
         this.angle = Math.random() * Math.PI * 2;
         this.spin = (Math.random() - 0.5) * 0.03;
-        // Dual Pink and Sky Blue color palette
         this.color = Math.random() > 0.5 ? '#f472b6' : '#38bdf8';
         this.opacity = Math.random() * 0.6 + 0.3;
       }
