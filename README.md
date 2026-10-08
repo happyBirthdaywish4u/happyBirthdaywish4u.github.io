@@ -395,13 +395,13 @@
         
         <!-- 📸 PICTURE 1 SOURCE -->
         <div class="polaroid-card -rotate-3" onclick="openLightbox('image.png')">
-          <img src="misbapic.jpeg" alt="Snapshot 1" class="w-full h-48 object-cover rounded">
+          <img src="Misbapic.jpeg" alt="Snapshot 1" class="w-full h-48 object-cover rounded">
           <p class="font-note text-center text-slate-800 text-xl mt-3 font-semibold">Good Vibes ✨</p>
         </div>
 
         <!-- 📸 PICTURE 2 SOURCE -->
         <div class="polaroid-card rotate-2" onclick="openLightbox('image_2.png')">
-          <img src="misbaprofile1.jpg" alt="Snapshot 2" class="w-full h-48 object-cover rounded">
+          <img src="misbaprofile1.jpeg" alt="Snapshot 2" class="w-full h-48 object-cover rounded">
           <p class="font-note text-center text-slate-800 text-xl mt-3 font-semibold">Fun Moments 🌟</p>
         </div>
 
