@@ -395,25 +395,25 @@
         
         <!-- 📸 PICTURE 1 SOURCE -->
         <div class="polaroid-card -rotate-3" onclick="openLightbox('image.png')">
-          <img src="image.png" alt="Snapshot 1" class="w-full h-48 object-cover rounded">
+          <img src="misbapic.jpeg" alt="Snapshot 1" class="w-full h-48 object-cover rounded">
           <p class="font-note text-center text-slate-800 text-xl mt-3 font-semibold">Good Vibes ✨</p>
         </div>
 
         <!-- 📸 PICTURE 2 SOURCE -->
         <div class="polaroid-card rotate-2" onclick="openLightbox('image_2.png')">
-          <img src="image_2.png" alt="Snapshot 2" class="w-full h-48 object-cover rounded">
+          <img src="misbaprofile1.jpg" alt="Snapshot 2" class="w-full h-48 object-cover rounded">
           <p class="font-note text-center text-slate-800 text-xl mt-3 font-semibold">Fun Moments 🌟</p>
         </div>
 
         <!-- 📸 PICTURE 3 SOURCE -->
         <div class="polaroid-card -rotate-2" onclick="openLightbox('image_3.png')">
-          <img src="image_3.png" alt="Snapshot 3" class="w-full h-48 object-cover rounded">
+          <img src="misbaprofile2.jpeg" alt="Snapshot 3" class="w-full h-48 object-cover rounded">
           <p class="font-note text-center text-slate-800 text-xl mt-3 font-semibold">Celebrations 🎉</p>
         </div>
 
         <!-- 📸 PICTURE 4 SOURCE -->
         <div class="polaroid-card rotate-3" onclick="openLightbox('image_4.png')">
-          <img src="image_4.png" alt="Snapshot 4" class="w-full h-48 object-cover rounded">
+          <img src="misba.profile3.jpeg" alt="Snapshot 4" class="w-full h-48 object-cover rounded">
           <p class="font-note text-center text-slate-800 text-xl mt-3 font-semibold">Memories 💫</p>
         </div>
 
