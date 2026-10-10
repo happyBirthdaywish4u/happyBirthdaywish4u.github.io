@@ -5,17 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Birthday Misba ! 🌸🩵</title>
   
-  <!-- ========================================================= -->
-  <!-- EXTERNAL LIBRARIES (Tailwind CSS, Canvas Confetti, Fonts)  -->
-  <!-- ========================================================= -->
+  <!-- EXTERNAL LIBRARIES (Tailwind CSS, Canvas Confetti, Fonts) -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Dancing+Script:wght@700&family=Caveat:wght@600&display=swap" rel="stylesheet">
 
-  <!-- ========================================================= -->
-  <!-- CUSTOM STYLES (Pink & Sky Blue Glassmorphism Theme)       -->
-  <!-- ========================================================= -->
   <style>
     body {
       font-family: 'Outfit', sans-serif;
@@ -65,19 +60,26 @@
       z-index: 0;
     }
 
-    /* Corner Floral Line-Art Ornaments */
+    /* Upgraded Floral Corner Ornaments (Matching Reference Image) */
     .corner-floral {
       position: fixed;
-      width: 180px;
-      height: 180px;
+      width: 220px;
+      height: 220px;
       pointer-events: none;
       z-index: 2;
-      opacity: 0.65;
+      opacity: 0.9;
+      filter: drop-shadow(0 0 12px rgba(236, 72, 153, 0.6));
+      animation: floralPulse 4s ease-in-out infinite alternate;
     }
-    .top-left { top: 0; left: 0; }
-    .top-right { top: 0; right: 0; transform: scaleX(-1); }
-    .bottom-left { bottom: 0; left: 0; transform: scaleY(-1); }
-    .bottom-right { bottom: 0; right: 0; transform: scale(-1); }
+    .top-left { top: -10px; left: -10px; }
+    .top-right { top: -10px; right: -10px; transform: scaleX(-1); }
+    .bottom-left { bottom: -10px; left: -10px; transform: scaleY(-1); }
+    .bottom-right { bottom: -10px; right: -10px; transform: scale(-1); }
+
+    @keyframes floralPulse {
+      0% { opacity: 0.8; filter: drop-shadow(0 0 10px rgba(236, 72, 153, 0.5)); }
+      100% { opacity: 1; filter: drop-shadow(0 0 20px rgba(56, 189, 248, 0.8)); }
+    }
 
     /* Glassmorphism Cards */
     .glass-card {
@@ -127,7 +129,7 @@
       100% { transform: rotate(5deg) translateY(8px); }
     }
 
-    /* 3D Cake Visuals with Topper Header */
+    /* 3D Cake Visuals & Split Cut Animation */
     .cake-container {
       position: relative;
       width: 280px;
@@ -164,7 +166,7 @@
       transform: translateX(-50%);
       border-radius: 16px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-      transition: all 0.5s ease;
+      transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
     .layer-bottom {
       width: 220px;
@@ -188,6 +190,81 @@
       border-bottom: 6px solid #ffffff;
     }
 
+    /* Split Cake States */
+    .cake-container.sliced .layer-bottom {
+      transform: translateX(-50%) translateY(10px);
+      clip-path: polygon(0 0, 48% 0, 48% 100%, 0 100%);
+      filter: drop-shadow(-10px 10px 15px rgba(236,72,153,0.5));
+    }
+    .cake-container.sliced .layer-bottom::after {
+      content: '';
+      position: absolute;
+      right: -120px;
+      top: 0;
+      width: 220px;
+      height: 75px;
+      background: linear-gradient(135deg, #ec4899, #be185d);
+      border-radius: 16px;
+      transform: translateX(30px);
+      clip-path: polygon(52% 0, 100% 0, 100% 100%, 52% 100%);
+      box-shadow: 10px 10px 15px rgba(56,189,248,0.5);
+    }
+
+    .cake-container.sliced .layer-middle {
+      transform: translateX(-50%) translateY(5px);
+      clip-path: polygon(0 0, 47% 0, 47% 100%, 0 100%);
+    }
+    .cake-container.sliced .layer-middle::after {
+      content: '';
+      position: absolute;
+      right: -95px;
+      top: 0;
+      width: 165px;
+      height: 65px;
+      background: linear-gradient(135deg, #38bdf8, #0284c7);
+      border-radius: 16px;
+      transform: translateX(25px);
+      clip-path: polygon(53% 0, 100% 0, 100% 100%, 53% 100%);
+    }
+
+    .cake-container.sliced .layer-top {
+      transform: translateX(-50%);
+      clip-path: polygon(0 0, 45% 0, 45% 100%, 0 100%);
+    }
+    .cake-container.sliced .layer-top::after {
+      content: '';
+      position: absolute;
+      right: -70px;
+      top: 0;
+      width: 115px;
+      height: 55px;
+      background: linear-gradient(135deg, #f472b6, #38bdf8);
+      border-radius: 16px;
+      transform: translateX(20px);
+      clip-path: polygon(55% 0, 100% 0, 100% 100%, 55% 100%);
+    }
+
+    /* Hidden Glowing Heart inside Sliced Cake */
+    .hidden-heart {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      font-size: 3rem;
+      color: #f43f5e;
+      filter: drop-shadow(0 0 20px #f43f5e);
+      z-index: 15;
+      transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s;
+    }
+    .cake-container.sliced .hidden-heart {
+      transform: translate(-50%, -50%) scale(1.3);
+      animation: heartPulse 1.5s infinite alternate;
+    }
+    @keyframes heartPulse {
+      0% { transform: translate(-50%, -50%) scale(1.2); filter: drop-shadow(0 0 15px #f43f5e); }
+      100% { transform: translate(-50%, -50%) scale(1.4); filter: drop-shadow(0 0 30px #38bdf8); }
+    }
+
     .frosting-dot {
       position: absolute;
       width: 12px;
@@ -197,10 +274,10 @@
       box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     }
 
-    /* Candle & Flame */
+    /* Candle & Flame with Smoke Animation */
     .candle {
       position: absolute;
-      width: 10px;
+      width: 100px;
       height: 38px;
       background: repeating-linear-gradient(45deg, #f43f5e, #f43f5e 5px, #ffffff 5px, #ffffff 10px);
       bottom: 195px;
@@ -208,9 +285,9 @@
       cursor: pointer;
       z-index: 20;
     }
-    .candle-1 { left: 105px; }
-    .candle-2 { left: 135px; }
-    .candle-3 { left: 165px; }
+    .candle-1 { left: 105px; width: 10px; }
+    .candle-2 { left: 135px; width: 10px; }
+    .candle-3 { left: 165px; width: 10px; }
 
     .flame {
       position: absolute;
@@ -223,10 +300,33 @@
       border-radius: 50% 50% 20% 20%;
       box-shadow: 0 0 15px #f97316, 0 0 25px #fef08a;
       animation: flicker 0.6s infinite alternate;
+      transition: all 0.4s ease;
     }
     @keyframes flicker {
       0% { transform: translateX(-50%) scale(1) rotate(-2deg); }
       100% { transform: translateX(-50%) scale(1.15) rotate(2deg); }
+    }
+
+    /* Smoke animation when blown out */
+    .smoke {
+      position: absolute;
+      top: -25px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 8px;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 50%;
+      filter: blur(4px);
+      opacity: 0;
+      pointer-events: none;
+    }
+    .smoked .smoke {
+      animation: riseSmoke 1.2s forwards;
+    }
+    @keyframes riseSmoke {
+      0% { transform: translateX(-50%) translateY(0) scale(1); opacity: 0.8; }
+      100% { transform: translateX(-50%) translateY(-35px) scale(2.5); opacity: 0; }
     }
 
     /* Knife Slice Animation */
@@ -244,11 +344,11 @@
     .knife.active {
       opacity: 1;
       pointer-events: auto;
-      animation: guideCut 2s infinite alternate;
+      animation: guideCut 1.8s infinite alternate;
     }
     @keyframes guideCut {
       0% { transform: translate(0, 0) rotate(-45deg); }
-      100% { transform: translate(-35px, 35px) rotate(-15deg); }
+      100% { transform: translate(-45px, 45px) rotate(-15deg); }
     }
 
     /* Polaroid Image Cards */
@@ -280,27 +380,124 @@
   <!-- 3D Floating Rose Petals Canvas -->
   <canvas id="petalCanvas"></canvas>
 
-  <!-- Corner Floral Vector Line-Art -->
-  <svg class="corner-floral top-left" viewBox="0 0 100 100" fill="none" stroke="url(#pinkBlueGrad)" stroke-width="1.5">
+  <!-- ========================================================= -->
+  <!-- 🌸 PINK & SKY-BLUE FLORAL VINE CORNER SVGs (Reference Matching) -->
+  <!-- ========================================================= -->
+  <svg class="corner-floral top-left" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
     <defs>
-      <linearGradient id="pinkBlueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <linearGradient id="floralPinkBlue" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" stop-color="#ec4899" />
+        <stop offset="50%" stop-color="#f472b6" />
         <stop offset="100%" stop-color="#38bdf8" />
       </linearGradient>
+      <linearGradient id="petalFillGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="rgba(236, 72, 153, 0.25)" />
+        <stop offset="100%" stop-color="rgba(56, 189, 248, 0.25)" />
+      </linearGradient>
     </defs>
-    <path d="M10,10 C30,10 50,20 50,50 C20,50 10,30 10,10 Z M50,50 C50,80 70,90 90,90 C90,70 80,50 50,50 Z" />
-    <circle cx="25" cy="25" r="8" />
-    <circle cx="75" cy="75" r="8" />
+
+    <!-- Main Swirling Vine Tendrils -->
+    <path d="M 10,20 C 30,10 80,15 110,40 C 140,65 155,100 160,180" stroke="url(#floralPinkBlue)" stroke-width="3" stroke-linecap="round"/>
+    <path d="M 20,10 C 15,30 35,70 70,95 C 105,120 145,130 180,135" stroke="url(#floralPinkBlue)" stroke-width="2.5" stroke-linecap="round"/>
+    
+    <!-- Secondary Decorative Spiral Loops -->
+    <path d="M 20,20 C 10,10 5,30 25,35 C 45,40 30,15 15,25" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+    <path d="M 60,85 C 45,100 40,120 55,125 C 70,130 75,105 60,95" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+    <path d="M 140,135 C 150,150 165,160 175,150 C 185,140 160,125 145,140" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+
+    <!-- LARGE CENTRAL 5-PETAL FLOWER -->
+    <g transform="translate(120, 70)">
+      <!-- Petals -->
+      <path d="M 0,0 C -25,-40 -5,-65 20,-50 C 45,-35 25,-10 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <path d="M 0,0 C 20,-50 55,-35 50,-5 C 45,25 15,15 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <path d="M 0,0 C 35,-10 50,25 25,45 C 0,65 -15,30 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <path d="M 0,0 C -10,35 -40,40 -50,15 C -60,-10 -25,-15 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <path d="M 0,0 C -45,0 -50,-35 -25,-45 C 0,-55 10,-20 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <!-- Flower Stamen / Center Rays -->
+      <circle cx="0" cy="0" r="6" fill="#38bdf8"/>
+      <line x1="0" y1="0" x2="-8" y2="-20" stroke="#ec4899" stroke-width="1.5"/>
+      <line x1="0" y1="0" x2="12" y2="-18" stroke="#ec4899" stroke-width="1.5"/>
+      <line x1="0" y1="0" x2="18" y2="8" stroke="#ec4899" stroke-width="1.5"/>
+      <line x1="0" y1="0" x2="-12" y2="15" stroke="#ec4899" stroke-width="1.5"/>
+      <line x1="0" y1="0" x2="-18" y2="-10" stroke="#ec4899" stroke-width="1.5"/>
+    </g>
+
+    <!-- TOP LEFT SMALLER FLOWER -->
+    <g transform="translate(50, 35) scale(0.65)">
+      <path d="M 0,0 C -25,-40 -5,-65 20,-50 C 45,-35 25,-10 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <path d="M 0,0 C 20,-50 55,-35 50,-5 C 45,25 15,15 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <path d="M 0,0 C 35,-10 50,25 25,45 C 0,65 -15,30 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <path d="M 0,0 C -10,35 -40,40 -50,15 C -60,-10 -25,-15 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <path d="M 0,0 C -45,0 -50,-35 -25,-45 C 0,-55 10,-20 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <circle cx="0" cy="0" r="5" fill="#f472b6"/>
+    </g>
+
+    <!-- BOTTOM RIGHT SMALLER FLOWER -->
+    <g transform="translate(140, 130) scale(0.65)">
+      <path d="M 0,0 C -25,-40 -5,-65 20,-50 C 45,-35 25,-10 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <path d="M 0,0 C 20,-50 55,-35 50,-5 C 45,25 15,15 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <path d="M 0,0 C 35,-10 50,25 25,45 C 0,65 -15,30 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <path d="M 0,0 C -10,35 -40,40 -50,15 C -60,-10 -25,-15 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <path d="M 0,0 C -45,0 -50,-35 -25,-45 C 0,-55 10,-20 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <circle cx="0" cy="0" r="5" fill="#38bdf8"/>
+    </g>
   </svg>
-  <svg class="corner-floral top-right" viewBox="0 0 100 100" fill="none" stroke="url(#pinkBlueGrad)" stroke-width="1.5">
-    <path d="M10,10 C30,10 50,20 50,50 C20,50 10,30 10,10 Z M50,50 C50,80 70,90 90,90 C90,70 80,50 50,50 Z" />
-    <circle cx="25" cy="25" r="8" />
+
+  <svg class="corner-floral top-right" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <use href="#floral-tl"/>
+    <!-- Duplicated SVG elements with matched pink/sky-blue gradient definitions -->
+    <path d="M 10,20 C 30,10 80,15 110,40 C 140,65 155,100 160,180" stroke="url(#floralPinkBlue)" stroke-width="3" stroke-linecap="round"/>
+    <path d="M 20,10 C 15,30 35,70 70,95 C 105,120 145,130 180,135" stroke="url(#floralPinkBlue)" stroke-width="2.5" stroke-linecap="round"/>
+    <g transform="translate(120, 70)">
+      <path d="M 0,0 C -25,-40 -5,-65 20,-50 C 45,-35 25,-10 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <path d="M 0,0 C 20,-50 55,-35 50,-5 C 45,25 15,15 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <path d="M 0,0 C 35,-10 50,25 25,45 C 0,65 -15,30 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <path d="M 0,0 C -10,35 -40,40 -50,15 C -60,-10 -25,-15 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <path d="M 0,0 C -45,0 -50,-35 -25,-45 C 0,-55 10,-20 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <circle cx="0" cy="0" r="6" fill="#38bdf8"/>
+    </g>
+    <g transform="translate(50, 35) scale(0.65)">
+      <path d="M 0,0 C -25,-40 -5,-65 20,-50 C 45,-35 25,-10 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <path d="M 0,0 C 20,-50 55,-35 50,-5 C 45,25 15,15 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <path d="M 0,0 C 35,-10 50,25 25,45 C 0,65 -15,30 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <path d="M 0,0 C -10,35 -40,40 -50,15 C -60,-10 -25,-15 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <path d="M 0,0 C -45,0 -50,-35 -25,-45 C 0,-55 10,-20 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <circle cx="0" cy="0" r="5" fill="#f472b6"/>
+    </g>
+    <g transform="translate(140, 130) scale(0.65)">
+      <path d="M 0,0 C -25,-40 -5,-65 20,-50 C 45,-35 25,-10 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <path d="M 0,0 C 20,-50 55,-35 50,-5 C 45,25 15,15 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <path d="M 0,0 C 35,-10 50,25 25,45 C 0,65 -15,30 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <path d="M 0,0 C -10,35 -40,40 -50,15 C -60,-10 -25,-15 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <path d="M 0,0 C -45,0 -50,-35 -25,-45 C 0,-55 10,-20 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <circle cx="0" cy="0" r="5" fill="#38bdf8"/>
+    </g>
   </svg>
-  <svg class="corner-floral bottom-left" viewBox="0 0 100 100" fill="none" stroke="url(#pinkBlueGrad)" stroke-width="1.5">
-    <path d="M10,10 C30,10 50,20 50,50 C20,50 10,30 10,10 Z M50,50 C50,80 70,90 90,90 C90,70 80,50 50,50 Z" />
+
+  <svg class="corner-floral bottom-left" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M 10,20 C 30,10 80,15 110,40 C 140,65 155,100 160,180" stroke="url(#floralPinkBlue)" stroke-width="3" stroke-linecap="round"/>
+    <path d="M 20,10 C 15,30 35,70 70,95 C 105,120 145,130 180,135" stroke="url(#floralPinkBlue)" stroke-width="2.5" stroke-linecap="round"/>
+    <g transform="translate(120, 70)">
+      <path d="M 0,0 C -25,-40 -5,-65 20,-50 C 45,-35 25,-10 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <path d="M 0,0 C 20,-50 55,-35 50,-5 C 45,25 15,15 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <path d="M 0,0 C 35,-10 50,25 25,45 C 0,65 -15,30 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <path d="M 0,0 C -10,35 -40,40 -50,15 C -60,-10 -25,-15 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <path d="M 0,0 C -45,0 -50,-35 -25,-45 C 0,-55 10,-20 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <circle cx="0" cy="0" r="6" fill="#38bdf8"/>
+    </g>
   </svg>
-  <svg class="corner-floral bottom-right" viewBox="0 0 100 100" fill="none" stroke="url(#pinkBlueGrad)" stroke-width="1.5">
-    <path d="M10,10 C30,10 50,20 50,50 C20,50 10,30 10,10 Z M50,50 C50,80 70,90 90,90 C90,70 80,50 50,50 Z" />
+
+  <svg class="corner-floral bottom-right" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M 10,20 C 30,10 80,15 110,40 C 140,65 155,100 160,180" stroke="url(#floralPinkBlue)" stroke-width="3" stroke-linecap="round"/>
+    <path d="M 20,10 C 15,30 35,70 70,95 C 105,120 145,130 180,135" stroke="url(#floralPinkBlue)" stroke-width="2.5" stroke-linecap="round"/>
+    <g transform="translate(120, 70)">
+      <path d="M 0,0 C -25,-40 -5,-65 20,-50 C 45,-35 25,-10 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <path d="M 0,0 C 20,-50 55,-35 50,-5 C 45,25 15,15 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <path d="M 0,0 C 35,-10 50,25 25,45 C 0,65 -15,30 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <path d="M 0,0 C -10,35 -40,40 -50,15 C -60,-10 -25,-15 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <path d="M 0,0 C -45,0 -50,-35 -25,-45 C 0,-55 10,-20 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <circle cx="0" cy="0" r="6" fill="#38bdf8"/>
+    </g>
   </svg>
 
   <!-- Top Hanging Balloons -->
@@ -347,11 +544,12 @@
       <div class="py-8">
         <div class="cake-container" id="cakeContainer" onclick="handleCakeInteraction()">
           <div class="cake-topper">✨ Happy Birthday Misba! ✨</div>
+          <div class="hidden-heart">💖</div>
 
-          <!-- Candles -->
-          <div class="candle candle-1"><div class="flame" id="flame1"></div></div>
-          <div class="candle candle-2"><div class="flame" id="flame2"></div></div>
-          <div class="candle candle-3"><div class="flame" id="flame3"></div></div>
+          <!-- Candles with Smoke effect -->
+          <div class="candle candle-1" id="candle1"><div class="flame" id="flame1"></div><div class="smoke"></div></div>
+          <div class="candle candle-2" id="candle2"><div class="flame" id="flame2"></div><div class="smoke"></div></div>
+          <div class="candle candle-3" id="candle3"><div class="flame" id="flame3"></div><div class="smoke"></div></div>
 
           <!-- Cake Tiers -->
           <div class="cake-layer layer-top">
@@ -381,10 +579,7 @@
       </div>
     </section>
 
-    <!-- ========================================================= -->
-    <!-- 📸 [ADD PICTURE SOURCES HERE]                            -->
-    <!-- Change 'image.png', 'image_2.png', etc. to your photo files -->
-    <!-- ========================================================= -->
+    <!-- POLAROID SNAPSHOTS -->
     <section class="space-y-6">
       <div class="text-center">
         <span class="text-xs font-bold uppercase tracking-widest text-sky-400">Polaroid Snapshots</span>
@@ -392,38 +587,29 @@
       </div>
 
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 pt-2">
-        
-        <!-- 📸 PICTURE 1 SOURCE -->
-        <div class="polaroid-card -rotate-3" onclick="openLightbox('image.png')">
+        <div class="polaroid-card -rotate-3" onclick="openLightbox('Misbapic.jpeg')">
           <img src="Misbapic.jpeg" alt="Snapshot 1" class="w-full h-48 object-cover rounded">
           <p class="font-note text-center text-slate-800 text-xl mt-3 font-semibold">Good Vibes ✨</p>
         </div>
-
-        <!-- 📸 PICTURE 2 SOURCE -->
-        <div class="polaroid-card rotate-2" onclick="openLightbox('image_2.png')">
+        <div class="polaroid-card rotate-2" onclick="openLightbox('misbaprofile1.jpeg')">
           <img src="misbaprofile1.jpeg" alt="Snapshot 2" class="w-full h-48 object-cover rounded">
           <p class="font-note text-center text-slate-800 text-xl mt-3 font-semibold">Fun Moments 🌟</p>
         </div>
-
-        <!-- 📸 PICTURE 3 SOURCE -->
-        <div class="polaroid-card -rotate-2" onclick="openLightbox('image_3.png')">
+        <div class="polaroid-card -rotate-2" onclick="openLightbox('misbaprofile2.jpeg')">
           <img src="misbaprofile2.jpeg" alt="Snapshot 3" class="w-full h-48 object-cover rounded">
           <p class="font-note text-center text-slate-800 text-xl mt-3 font-semibold">Celebrations 🎉</p>
         </div>
-
-        <!-- 📸 PICTURE 4 SOURCE -->
-        <div class="polaroid-card rotate-3" onclick="openLightbox('image_4.png')">
+        <div class="polaroid-card rotate-3" onclick="openLightbox('misba.profile3.jpeg')">
           <img src="misba.profile3.jpeg" alt="Snapshot 4" class="w-full h-48 object-cover rounded">
           <p class="font-note text-center text-slate-800 text-xl mt-3 font-semibold">Memories 💫</p>
         </div>
-
       </div>
     </section>
 
-    <!-- TYPEWRITER WISH LETTER SECTION -->
-    <section class="glass-card rounded-2xl p-6 md:p-8 space-y-4 relative overflow-hidden">
+    <!-- TYPEWRITER WISH LETTER SECTION (LOCKED UNTIL CAKE IS CUT) -->
+    <section id="wishLetterSection" class="glass-card rounded-2xl p-6 md:p-8 space-y-4 relative overflow-hidden transition-all duration-700 opacity-40 blur-[2px] pointer-events-none">
       <div class="flex items-center justify-between border-b border-slate-700/60 pb-3">
-        <span class="text-xs font-bold uppercase tracking-widest text-pink-400">Special Wish Letter</span>
+        <span id="letterHeaderTitle" class="text-xs font-bold uppercase tracking-widest text-pink-400">🔒 Special Wish Letter (Complete Cake Cutting to Unlock!)</span>
         <button onclick="restartTypewriter()" class="text-xs text-sky-400 hover:text-sky-300 transition">
           <i class="fas fa-redo-alt mr-1"></i> Replay
         </button>
@@ -488,14 +674,11 @@
           <label class="block text-xs text-slate-400 mb-1">Option 1: Upload File from Device</label>
           <input type="file" id="audioFileInput" accept="audio/*" onchange="handleAudioUpload(event)" class="w-full text-xs text-slate-300 file:mr-3 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-pink-500 file:text-white hover:file:bg-pink-600 cursor-pointer">
         </div>
-
         <div class="text-center text-xs text-slate-500 uppercase tracking-widest">— OR —</div>
-
         <div>
           <label class="block text-xs text-slate-400 mb-1">Option 2: Paste Direct Audio URL (.mp3)</label>
           <input type="url" id="audioUrlInput" placeholder="https://example.com/song.mp3" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-xs text-slate-100 focus:outline-none focus:border-sky-400">
         </div>
-
         <button onclick="saveAudioUrl()" class="w-full py-2.5 rounded-xl bg-pink-500 hover:bg-pink-600 text-white font-bold text-xs uppercase tracking-wider transition">
           Set Custom Song
         </button>
@@ -505,24 +688,17 @@
 
   <!-- LIGHTBOX MODAL -->
   <div id="lightbox" class="fixed inset-0 bg-black/90 z-50 hidden flex items-center justify-center p-4" onclick="closeLightbox()">
-    <img id="lightboxImg" src="" alt="Full view" class="max-w-full max-vh-80 rounded-lg shadow-2xl border-2 border-pink-500/50">
+    <img id="lightboxImg" src="" alt="Full view" class="max-w-full max-h-[80vh] rounded-lg shadow-2xl border-2 border-pink-500/50">
   </div>
 
-  <!-- ========================================================= -->
-  <!-- 🎵 [ADD DEFAULT MUSIC SOURCE HERE]                        -->
-  <!-- Paste direct song link inside src="..." below (e.g., mp3) -->
-  <!-- ========================================================= -->
   <audio id="customAudioPlayer" src="videoplayback.weba"></audio>
 
   <footer class="text-center text-xs text-slate-500 py-4 z-10">
     Crafted with 🎉 for Misba | Wishes from Ankit Yadav
   </footer>
 
-  <!-- ========================================================= -->
-  <!-- JAVASCRIPT ENGINE (Audio, Cake, Typewriter & 3D Petals)   -->
-  <!-- ========================================================= -->
+  <!-- JAVASCRIPT ENGINE -->
   <script>
-    /* Web Audio Synthesizer State */
     let audioContext = null;
     let isPlayingAudio = false;
     let audioTimer = null;
@@ -567,7 +743,7 @@
         btnText.innerText = "PLAYING...";
         btnIcon.className = "fas fa-volume-up text-sky-400 animate-pulse";
         
-        if (customPlayer.src && customPlayer.src !== window.location.href && customPlayer.src !== "YOUR_SONG_URL_HERE.mp3") {
+        if (customPlayer.src && customPlayer.src !== window.location.href) {
           customPlayer.play().catch(() => playBirthdayMelody());
         } else {
           playBirthdayMelody();
@@ -593,7 +769,6 @@
       }, 400);
     }
 
-    /* Modal Custom Song Picker */
     function openSongModal() { document.getElementById('songModal').classList.remove('hidden'); }
     function closeSongModal() { document.getElementById('songModal').classList.add('hidden'); }
 
@@ -602,7 +777,7 @@
       if (file) {
         const url = URL.createObjectURL(file);
         document.getElementById('customAudioPlayer').src = url;
-        alert("Custom song loaded successfully! It will play automatically when the cake is cut.");
+        alert("Custom song loaded successfully!");
         closeSongModal();
       }
     }
@@ -616,7 +791,6 @@
       }
     }
 
-    /* Interactive Candle Blowing & Cake Cutting Logic */
     let candlesLit = true;
     let cakeCut = false;
 
@@ -638,9 +812,15 @@
 
     function extinguishCandles() {
       candlesLit = false;
-      document.getElementById('flame1').style.display = 'none';
-      document.getElementById('flame2').style.display = 'none';
-      document.getElementById('flame3').style.display = 'none';
+      document.getElementById('candle1').classList.add('smoked');
+      document.getElementById('candle2').classList.add('smoked');
+      document.getElementById('candle3').classList.add('smoked');
+
+      setTimeout(() => {
+        document.getElementById('flame1').style.display = 'none';
+        document.getElementById('flame2').style.display = 'none';
+        document.getElementById('flame3').style.display = 'none';
+      }, 400);
       
       confetti({ particleCount: 60, spread: 70, origin: { y: 0.6 } });
       
@@ -648,28 +828,36 @@
       btn.innerHTML = '🔪 Cut The Cake';
       btn.className = 'px-8 py-3.5 rounded-full font-bold text-sm tracking-wider uppercase transition-all duration-300 transform hover:scale-105 shadow-lg bg-gradient-to-r from-sky-400 to-blue-500 hover:from-sky-500 hover:to-blue-600 text-white shadow-sky-500/25';
       
-      document.getElementById('subInstruction').innerText = 'Now click the cake or button to cut the slice! 🍰';
+      document.getElementById('subInstruction').innerText = 'Now click the cake or button to slice it! 🍰';
       document.getElementById('knife').classList.add('active');
     }
 
     function cutCake() {
       cakeCut = true;
       document.getElementById('knife').classList.remove('active');
+      document.getElementById('cakeContainer').classList.add('sliced');
       
       confetti({
-        particleCount: 180,
-        spread: 120,
+        particleCount: 200,
+        spread: 130,
         origin: { y: 0.5 },
         colors: ['#ec4899', '#38bdf8', '#f472b6', '#60a5fa', '#ffffff']
       });
 
-      // Automatically play music when cake is sliced
       if (!isPlayingAudio) {
         toggleAudio();
       }
 
       document.getElementById('subInstruction').innerText = 'Yay! Happy Birthday Misba! Wish you an incredible year ahead! 🎉';
       document.getElementById('actionBtn').style.display = 'none';
+
+      // UNLOCK THE WISH LETTER SECTION
+      const letterSec = document.getElementById('wishLetterSection');
+      letterSec.classList.remove('opacity-40', 'blur-[2px]', 'pointer-events-none');
+      document.getElementById('letterHeaderTitle').innerText = "✨ Special Wish Letter for Misba ✨";
+      
+      // Start typing animation automatically
+      restartTypewriter();
     }
 
     function popBalloon(el) {
@@ -679,7 +867,6 @@
       setTimeout(() => el.remove(), 200);
     }
 
-    /* Typewriter Wish Letter */
     const wishText = "Hey Misba! Wishing you a very Happy Birthday! Hope your day is filled with great moments, lots of laughter, and awesome memories. May this year bring you continuous success, joy, and everything you are working towards! Have a fantastic birthday celebration!";
     let typeIdx = 0;
 
@@ -697,7 +884,6 @@
       typeWriter();
     }
 
-    /* Lightbox Modal */
     function openLightbox(src) {
       document.getElementById('lightboxImg').src = src;
       document.getElementById('lightbox').classList.remove('hidden');
@@ -706,7 +892,6 @@
       document.getElementById('lightbox').classList.add('hidden');
     }
 
-    /* Quick Reaction */
     function handleReaction(type) {
       if (type === 'loved') {
         confetti({ particleCount: 100, spread: 70, origin: { y: 0.7 } });
@@ -716,7 +901,6 @@
       }
     }
 
-    /* Reply Handler */
     function sendReply() {
       const txt = document.getElementById('replyText').value.trim();
       if (!txt) return;
@@ -741,7 +925,6 @@
       constructor() {
         this.reset();
       }
-
       reset() {
         this.x = Math.random() * canvas.width;
         this.y = -20;
@@ -753,21 +936,18 @@
         this.color = Math.random() > 0.5 ? '#f472b6' : '#38bdf8';
         this.opacity = Math.random() * 0.6 + 0.3;
       }
-
       update() {
         this.y += this.speedY;
         this.x += Math.sin(this.y / 30) + this.speedX;
         this.angle += this.spin;
         if (this.y > canvas.height + 20) this.reset();
       }
-
       draw() {
         ctx.save();
         ctx.translate(this.x, this.y);
         ctx.rotate(this.angle);
         ctx.globalAlpha = this.opacity;
         ctx.fillStyle = this.color;
-        
         ctx.beginPath();
         ctx.moveTo(0, 0);
         ctx.bezierCurveTo(-this.size, -this.size / 2, -this.size, this.size, 0, this.size * 1.5);
@@ -790,7 +970,6 @@
 
     window.onload = () => {
       animatePetals();
-      typeWriter();
     };
   </script>
 </body>
