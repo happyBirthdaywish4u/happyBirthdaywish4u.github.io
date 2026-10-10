@@ -60,7 +60,7 @@
       z-index: 0;
     }
 
-    /* Upgraded Floral Corner Ornaments (Matching Reference Image) */
+    /* Floral Corner Ornaments (Upper Right & Lower Left Only) */
     .corner-floral {
       position: fixed;
       width: 220px;
@@ -71,10 +71,8 @@
       filter: drop-shadow(0 0 12px rgba(236, 72, 153, 0.6));
       animation: floralPulse 4s ease-in-out infinite alternate;
     }
-    .top-left { top: -10px; left: -10px; }
-    .top-right { top: -10px; right: -10px; transform: scaleX(-1); }
-    .bottom-left { bottom: -10px; left: -10px; transform: scaleY(-1); }
-    .bottom-right { bottom: -10px; right: -10px; transform: scale(-1); }
+    .top-right { top: -10px; right: -10px; }
+    .bottom-left { bottom: -10px; left: -10px; transform: scale(-1); }
 
     @keyframes floralPulse {
       0% { opacity: 0.8; filter: drop-shadow(0 0 10px rgba(236, 72, 153, 0.5)); }
@@ -277,7 +275,7 @@
     /* Candle & Flame with Smoke Animation */
     .candle {
       position: absolute;
-      width: 100px;
+      width: 10px;
       height: 38px;
       background: repeating-linear-gradient(45deg, #f43f5e, #f43f5e 5px, #ffffff 5px, #ffffff 10px);
       bottom: 195px;
@@ -285,9 +283,9 @@
       cursor: pointer;
       z-index: 20;
     }
-    .candle-1 { left: 105px; width: 10px; }
-    .candle-2 { left: 135px; width: 10px; }
-    .candle-3 { left: 165px; width: 10px; }
+    .candle-1 { left: 105px; }
+    .candle-2 { left: 135px; }
+    .candle-3 { left: 165px; }
 
     .flame {
       position: absolute;
@@ -377,13 +375,15 @@
   <div class="glow-bg-pink"></div>
   <div class="glow-bg-blue"></div>
 
-  <!-- 3D Floating Rose Petals Canvas -->
+  <!-- 3D Falling Rose Petals Canvas -->
   <canvas id="petalCanvas"></canvas>
 
   <!-- ========================================================= -->
-  <!-- 🌸 PINK & SKY-BLUE FLORAL VINE CORNER SVGs (Reference Matching) -->
+  <!-- 🌸 FLORAL VINE CORNER SVGs (Upper Right & Lower Left Only) -->
   <!-- ========================================================= -->
-  <svg class="corner-floral top-left" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  
+  <!-- Upper Right Corner Floral SVG -->
+  <svg class="corner-floral top-right" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <linearGradient id="floralPinkBlue" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" stop-color="#ec4899" />
@@ -396,24 +396,19 @@
       </linearGradient>
     </defs>
 
-    <!-- Main Swirling Vine Tendrils -->
     <path d="M 10,20 C 30,10 80,15 110,40 C 140,65 155,100 160,180" stroke="url(#floralPinkBlue)" stroke-width="3" stroke-linecap="round"/>
     <path d="M 20,10 C 15,30 35,70 70,95 C 105,120 145,130 180,135" stroke="url(#floralPinkBlue)" stroke-width="2.5" stroke-linecap="round"/>
-    
-    <!-- Secondary Decorative Spiral Loops -->
     <path d="M 20,20 C 10,10 5,30 25,35 C 45,40 30,15 15,25" stroke="url(#floralPinkBlue)" stroke-width="2"/>
     <path d="M 60,85 C 45,100 40,120 55,125 C 70,130 75,105 60,95" stroke="url(#floralPinkBlue)" stroke-width="2"/>
     <path d="M 140,135 C 150,150 165,160 175,150 C 185,140 160,125 145,140" stroke="url(#floralPinkBlue)" stroke-width="2"/>
 
-    <!-- LARGE CENTRAL 5-PETAL FLOWER -->
+    <!-- Large Central Flower -->
     <g transform="translate(120, 70)">
-      <!-- Petals -->
       <path d="M 0,0 C -25,-40 -5,-65 20,-50 C 45,-35 25,-10 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
       <path d="M 0,0 C 20,-50 55,-35 50,-5 C 45,25 15,15 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
       <path d="M 0,0 C 35,-10 50,25 25,45 C 0,65 -15,30 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
       <path d="M 0,0 C -10,35 -40,40 -50,15 C -60,-10 -25,-15 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
       <path d="M 0,0 C -45,0 -50,-35 -25,-45 C 0,-55 10,-20 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
-      <!-- Flower Stamen / Center Rays -->
       <circle cx="0" cy="0" r="6" fill="#38bdf8"/>
       <line x1="0" y1="0" x2="-8" y2="-20" stroke="#ec4899" stroke-width="1.5"/>
       <line x1="0" y1="0" x2="12" y2="-18" stroke="#ec4899" stroke-width="1.5"/>
@@ -422,40 +417,7 @@
       <line x1="0" y1="0" x2="-18" y2="-10" stroke="#ec4899" stroke-width="1.5"/>
     </g>
 
-    <!-- TOP LEFT SMALLER FLOWER -->
-    <g transform="translate(50, 35) scale(0.65)">
-      <path d="M 0,0 C -25,-40 -5,-65 20,-50 C 45,-35 25,-10 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
-      <path d="M 0,0 C 20,-50 55,-35 50,-5 C 45,25 15,15 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
-      <path d="M 0,0 C 35,-10 50,25 25,45 C 0,65 -15,30 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
-      <path d="M 0,0 C -10,35 -40,40 -50,15 C -60,-10 -25,-15 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
-      <path d="M 0,0 C -45,0 -50,-35 -25,-45 C 0,-55 10,-20 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
-      <circle cx="0" cy="0" r="5" fill="#f472b6"/>
-    </g>
-
-    <!-- BOTTOM RIGHT SMALLER FLOWER -->
-    <g transform="translate(140, 130) scale(0.65)">
-      <path d="M 0,0 C -25,-40 -5,-65 20,-50 C 45,-35 25,-10 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
-      <path d="M 0,0 C 20,-50 55,-35 50,-5 C 45,25 15,15 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
-      <path d="M 0,0 C 35,-10 50,25 25,45 C 0,65 -15,30 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
-      <path d="M 0,0 C -10,35 -40,40 -50,15 C -60,-10 -25,-15 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
-      <path d="M 0,0 C -45,0 -50,-35 -25,-45 C 0,-55 10,-20 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
-      <circle cx="0" cy="0" r="5" fill="#38bdf8"/>
-    </g>
-  </svg>
-
-  <svg class="corner-floral top-right" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <use href="#floral-tl"/>
-    <!-- Duplicated SVG elements with matched pink/sky-blue gradient definitions -->
-    <path d="M 10,20 C 30,10 80,15 110,40 C 140,65 155,100 160,180" stroke="url(#floralPinkBlue)" stroke-width="3" stroke-linecap="round"/>
-    <path d="M 20,10 C 15,30 35,70 70,95 C 105,120 145,130 180,135" stroke="url(#floralPinkBlue)" stroke-width="2.5" stroke-linecap="round"/>
-    <g transform="translate(120, 70)">
-      <path d="M 0,0 C -25,-40 -5,-65 20,-50 C 45,-35 25,-10 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
-      <path d="M 0,0 C 20,-50 55,-35 50,-5 C 45,25 15,15 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
-      <path d="M 0,0 C 35,-10 50,25 25,45 C 0,65 -15,30 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
-      <path d="M 0,0 C -10,35 -40,40 -50,15 C -60,-10 -25,-15 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
-      <path d="M 0,0 C -45,0 -50,-35 -25,-45 C 0,-55 10,-20 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
-      <circle cx="0" cy="0" r="6" fill="#38bdf8"/>
-    </g>
+    <!-- Smaller Flowers -->
     <g transform="translate(50, 35) scale(0.65)">
       <path d="M 0,0 C -25,-40 -5,-65 20,-50 C 45,-35 25,-10 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
       <path d="M 0,0 C 20,-50 55,-35 50,-5 C 45,25 15,15 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
@@ -474,9 +436,13 @@
     </g>
   </svg>
 
+  <!-- Lower Left Corner Floral SVG -->
   <svg class="corner-floral bottom-left" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M 10,20 C 30,10 80,15 110,40 C 140,65 155,100 160,180" stroke="url(#floralPinkBlue)" stroke-width="3" stroke-linecap="round"/>
     <path d="M 20,10 C 15,30 35,70 70,95 C 105,120 145,130 180,135" stroke="url(#floralPinkBlue)" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M 20,20 C 10,10 5,30 25,35 C 45,40 30,15 15,25" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+    <path d="M 60,85 C 45,100 40,120 55,125 C 70,130 75,105 60,95" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+    <path d="M 140,135 C 150,150 165,160 175,150 C 185,140 160,125 145,140" stroke="url(#floralPinkBlue)" stroke-width="2"/>
     <g transform="translate(120, 70)">
       <path d="M 0,0 C -25,-40 -5,-65 20,-50 C 45,-35 25,-10 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
       <path d="M 0,0 C 20,-50 55,-35 50,-5 C 45,25 15,15 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
@@ -485,18 +451,21 @@
       <path d="M 0,0 C -45,0 -50,-35 -25,-45 C 0,-55 10,-20 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
       <circle cx="0" cy="0" r="6" fill="#38bdf8"/>
     </g>
-  </svg>
-
-  <svg class="corner-floral bottom-right" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M 10,20 C 30,10 80,15 110,40 C 140,65 155,100 160,180" stroke="url(#floralPinkBlue)" stroke-width="3" stroke-linecap="round"/>
-    <path d="M 20,10 C 15,30 35,70 70,95 C 105,120 145,130 180,135" stroke="url(#floralPinkBlue)" stroke-width="2.5" stroke-linecap="round"/>
-    <g transform="translate(120, 70)">
+    <g transform="translate(50, 35) scale(0.65)">
       <path d="M 0,0 C -25,-40 -5,-65 20,-50 C 45,-35 25,-10 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
       <path d="M 0,0 C 20,-50 55,-35 50,-5 C 45,25 15,15 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
       <path d="M 0,0 C 35,-10 50,25 25,45 C 0,65 -15,30 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
       <path d="M 0,0 C -10,35 -40,40 -50,15 C -60,-10 -25,-15 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
       <path d="M 0,0 C -45,0 -50,-35 -25,-45 C 0,-55 10,-20 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
-      <circle cx="0" cy="0" r="6" fill="#38bdf8"/>
+      <circle cx="0" cy="0" r="5" fill="#f472b6"/>
+    </g>
+    <g transform="translate(140, 130) scale(0.65)">
+      <path d="M 0,0 C -25,-40 -5,-65 20,-50 C 45,-35 25,-10 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <path d="M 0,0 C 20,-50 55,-35 50,-5 C 45,25 15,15 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <path d="M 0,0 C 35,-10 50,25 25,45 C 0,65 -15,30 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <path d="M 0,0 C -10,35 -40,40 -50,15 C -60,-10 -25,-15 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <path d="M 0,0 C -45,0 -50,-35 -25,-45 C 0,-55 10,-20 0,0 Z" fill="url(#petalFillGrad)" stroke="url(#floralPinkBlue)" stroke-width="2"/>
+      <circle cx="0" cy="0" r="5" fill="#38bdf8"/>
     </g>
   </svg>
 
@@ -512,7 +481,7 @@
   </div>
 
   <!-- Header Audio Controls -->
-  <div class="fixed top-4 right-4 z-50 flex items-center space-x-2">
+  <div class="fixed top-4 left-4 z-50 flex items-center space-x-2">
     <button onclick="openSongModal()" class="px-3.5 py-2 rounded-full glass-card border border-pink-400/40 text-xs font-semibold tracking-wider hover:bg-pink-500/20 transition flex items-center space-x-2">
       <i class="fas fa-plus text-pink-400"></i>
       <span>CUSTOM SONG</span>
